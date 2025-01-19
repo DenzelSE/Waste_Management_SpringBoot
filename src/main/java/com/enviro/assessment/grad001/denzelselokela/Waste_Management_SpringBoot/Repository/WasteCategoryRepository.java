@@ -2,8 +2,8 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategory;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategories;
 
-public interface WasteCategoryRepository extends JpaRepository<WasteCategory,Long>{
+public interface WasteCategoryRepository extends JpaRepository<WasteCategories,Long>{
     
 }
