@@ -10,12 +10,21 @@ Developing a waste sorting mobile application aimed at promoting sustainable was
 Categories : 
   - Get '/categories' - get all categories
   - Get '/categories/{id}' - get a category by id
+  - Post '/categories' - add to categories
+  - Put 'categories/{id} - update a category by id
+  - Delete '/categories/{id} - delete a category by id
 
 Disposal guidelines:
   - Get '/guidelines' - get all disposal guidelines
-  - get '/guidelines/categories{id}' - get disposal guidelines of a specific category
+  - Get '/guidelines/categories{id}' - get disposal guidelines of a specific category
+  - Post
+  - Put
+  - Delete
 
 Recycling tips:
 
   - Get '/tips' - get all tips - get all the recycling tips
-  - Get '/tips/categories/{id} - get recycling tips for a category
+  - Get '/tips/categories{id} - get recycling tips for a category
+  - Post
+  - put
+  - delete
