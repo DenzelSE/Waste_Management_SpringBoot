@@ -19,7 +19,7 @@ public class WasteCategoryService {
     }
 
     // TODOhandle exception properlly
-    public WasteCategories getCategorybyId(long id){
+    public WasteCategories getCategoryById(long id){
         return repository.findById(id).get();
     }
 

@@ -32,8 +32,8 @@ public class WasteCategoryController {
     }
 
     @GetMapping("/categories/{id}")
-    public ResponseEntity<WasteCategories> getCategorybyId(@PathVariable long id){
-        WasteCategories wasteCategory = service.getCategorybyId(id);
+    public ResponseEntity<WasteCategories> getCategoryById(@PathVariable long id){
+        WasteCategories wasteCategory = service.getCategoryById(id);
 
         if(wasteCategory != null){
             return new ResponseEntity<>(wasteCategory, HttpStatus.OK);
@@ -64,7 +64,7 @@ public class WasteCategoryController {
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable long id){
 
-        WasteCategories wasteCategory = service.getCategorybyId(id);
+        WasteCategories wasteCategory = service.getCategoryById(id);
 
         if(wasteCategory != null){
             return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);

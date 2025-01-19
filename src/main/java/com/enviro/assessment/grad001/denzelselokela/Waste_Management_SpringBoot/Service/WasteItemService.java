@@ -17,4 +17,12 @@ public class WasteItemService {
     public List<WasteItem> getAllItems(){
         return repository.findAll();
     }
+
+    public WasteItem getItemById(long id) {
+        return repository.findById(id).get(); //bad way , need fix handling
+    }
+
+    public Object addWasteItem(WasteItem wasteItem) {
+        return repository.save(wasteItem);
+    }
 }
