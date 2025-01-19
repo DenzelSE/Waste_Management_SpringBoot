@@ -13,9 +13,9 @@ public class DisposalGuidelineService {
     
     @Autowired
     private DisposalGuidelineRepository repository;
-
-    // public List<DisposalGuideline> getAllGuidelines(){
-    //     return repository.findAll();
-    // }
+    
+    public List<DisposalGuideline> getAllGuidelines(){
+        return repository.findAll();
+    }
 
 }

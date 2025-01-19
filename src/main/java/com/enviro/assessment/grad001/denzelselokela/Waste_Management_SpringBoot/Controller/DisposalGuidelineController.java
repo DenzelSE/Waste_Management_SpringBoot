@@ -21,7 +21,7 @@ public class DisposalGuidelineController {
     @Autowired
     private DisposalGuidelineService service;
 
-    @GetMapping("/DisposalGuidelines")
+    @GetMapping("/guidelines")
     public ResponseEntity<List<DisposalGuideline>> getAllGuidelines(){
         return new ResponseEntity<>(service.getAllGuidelines(), HttpStatus.OK);
     }
