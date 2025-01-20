@@ -37,10 +37,6 @@ public class WasteCategory {
     private String description;
     
     @JsonManagedReference
-    @OneToMany(mappedBy = "wasteCategory",cascade = CascadeType.ALL)
-    private List<WasteItem> wasteGuidelines = new ArrayList<>();
-
-    @JsonManagedReference
     @OneToMany(mappedBy = "wasteCategory", cascade = CascadeType.ALL)
     private List<RecyclingTip> recyclingTips = new ArrayList<>();
 
