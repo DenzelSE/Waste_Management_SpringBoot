@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 
 import java.util.List;
 
+
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteItem;
 
 public interface WasteItemService {
@@ -9,4 +10,5 @@ public interface WasteItemService {
     public WasteItem getWasteItemById(long id);
     public WasteItem addWasteItem(WasteItem wasteItem);
     public WasteItem updateWasteItem(WasteItem updatedWasteItem);
+    void deleteWasteItemById(long id);
 }

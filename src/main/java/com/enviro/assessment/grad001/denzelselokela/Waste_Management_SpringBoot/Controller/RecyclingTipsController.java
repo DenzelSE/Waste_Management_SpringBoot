@@ -21,7 +21,7 @@ public class RecyclingTipsController {
     private RecyclingTipsServiceImp Tservice;
 
     @GetMapping("/tips")
-    public ResponseEntity<List<RecyclingTip>> getAllTips(){
-        return new ResponseEntity<>(Tservice.getAllTips(), HttpStatus.OK);
+    public ResponseEntity<List<RecyclingTip>> getAllRecyclingTips(){
+        return new ResponseEntity<>(Tservice.getAllRecyclingTips(), HttpStatus.OK);
     }
 }

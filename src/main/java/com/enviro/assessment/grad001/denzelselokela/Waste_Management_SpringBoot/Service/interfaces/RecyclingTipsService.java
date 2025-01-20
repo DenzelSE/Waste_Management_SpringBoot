@@ -9,4 +9,5 @@ public interface RecyclingTipsService {
     public RecyclingTip getRecyclingTipById(long id);
     public RecyclingTip addRecyclingTip(RecyclingTip recyclingTip);
     public RecyclingTip updaRecyclingTip(RecyclingTip upDatedRecyclingTip);
+    void deleteById(long id);
 }

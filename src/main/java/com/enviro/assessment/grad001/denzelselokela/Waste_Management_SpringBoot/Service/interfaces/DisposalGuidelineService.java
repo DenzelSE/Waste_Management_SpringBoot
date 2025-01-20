@@ -10,4 +10,5 @@ public interface DisposalGuidelineService {
     public DisposalGuideline getGuidelineById(long id);
     public DisposalGuideline addGuideline(DisposalGuideline disposalGuideline);
     public DisposalGuideline updateGuideline(long id,DisposalGuideline disposalGuideline);
+    void deleteById(long id);
 }

@@ -37,4 +37,9 @@ public class DisposalGuidelineServiceImp implements DisposalGuidelineService {
         return repository.save(disposalGuideline);
     }
 
+    @Override
+    public void deleteById(long id) {
+        repository.deleteById(id);
+    }
+
 }

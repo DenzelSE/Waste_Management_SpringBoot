@@ -9,5 +9,6 @@ public interface WasteCategoryService {
     public WasteCategory getCategoryById(long id);
     public WasteCategory addCategory(WasteCategory wasteCategory);
     public WasteCategory updateCategory(long id,WasteCategory wasteCategory);
+    void deleteById(long id);
 
 }

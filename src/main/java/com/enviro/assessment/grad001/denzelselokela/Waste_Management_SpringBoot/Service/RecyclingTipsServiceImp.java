@@ -13,33 +13,33 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 public class RecyclingTipsServiceImp implements RecyclingTipsService{
     
     @Autowired
-    private RecyclingTipsRepository tipsRepository;
+    private RecyclingTipsRepository repository;
 
-    public List<RecyclingTip> getAllTips(){
-        return tipsRepository.findAll();
-    }
 
     @Override
     public List<RecyclingTip> getAllRecyclingTips() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllRecyclingTips'");
+        return repository.findAll();
     }
 
     @Override
     public RecyclingTip getRecyclingTipById(long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRecyclingTipById'");
+        return repository.findById(id).orElseThrow(); // handle properly 
     }
 
     @Override
     public RecyclingTip addRecyclingTip(RecyclingTip recyclingTip) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addRecyclingTip'");
+        return repository.save(recyclingTip);
     }
 
     @Override
-    public RecyclingTip updaRecyclingTip(RecyclingTip upDatedRecyclingTip) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updaRecyclingTip'");
+    public RecyclingTip updaRecyclingTip(RecyclingTip updatedRecyclingTip) {
+        updatedRecyclingTip.setTip(updatedRecyclingTip.getTip());
+        updatedRecyclingTip.setWasteCategory(updatedRecyclingTip.getWasteCategory());
+        return repository.save(updatedRecyclingTip);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        repository.deleteById(id);
     }
 }

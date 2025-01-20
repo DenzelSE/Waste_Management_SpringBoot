@@ -23,7 +23,7 @@ public class WasteCategoryServiceImp implements WasteCategoryService{
     // TODOhandle exception properlly
     @Override
     public WasteCategory getCategoryById(long id){
-        return repository.findById(id).get();
+        return repository.findById(id).orElseThrow();
     }
 
     @Override
@@ -38,5 +38,10 @@ public class WasteCategoryServiceImp implements WasteCategoryService{
         wasteCategory.setId(id);
         return repository.save(wasteCategory);
         }
+
+    @Override
+    public void deleteById(long id) {
+        repository.deleteById(id);
+    }
 
 }

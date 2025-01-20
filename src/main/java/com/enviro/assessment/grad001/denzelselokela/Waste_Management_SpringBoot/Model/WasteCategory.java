@@ -3,6 +3,9 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,13 +36,15 @@ public class WasteCategory {
     @NotBlank
     private String description;
     
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "wasteCategory",cascade = CascadeType.ALL)
     private List<WasteItem> wasteGuidelines = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "wasteCategory", cascade = CascadeType.ALL)
     private List<RecyclingTip> recyclingTips = new ArrayList<>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "wasteCategory",cascade = CascadeType.ALL)
     private List<DisposalGuideline> disposalGuidelines = new ArrayList<>();
 }

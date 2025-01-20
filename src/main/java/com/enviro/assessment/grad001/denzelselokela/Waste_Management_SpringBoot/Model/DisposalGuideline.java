@@ -1,5 +1,9 @@
 package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +34,8 @@ public class DisposalGuideline {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference
+    @JoinColumn(name = "category_id")
     private WasteCategory wasteCategory;
 
 }

@@ -26,14 +26,14 @@ public class WasteItemController {
     private WasteItemServiceImp service;
 
     @GetMapping("/items")
-    public ResponseEntity<List<WasteItem>> getAllItems(){
-        return new ResponseEntity<>(service.getAllItems(), HttpStatus.OK);
+    public ResponseEntity<List<WasteItem>> getAllWasteItems(){
+        return new ResponseEntity<>(service.getAllWasteItems(), HttpStatus.OK);
     }
 
     @GetMapping("/items/{id}")
-    public ResponseEntity<WasteItem> getItemById(@PathVariable long id){
+    public ResponseEntity<WasteItem> getWasteItemById(@PathVariable long id){
         
-        WasteItem wasteItem = service.getItemById(id);
+        WasteItem wasteItem = service.getWasteItemById(id);
 
         if(wasteItem != null){
             return new ResponseEntity<>(wasteItem, HttpStatus.OK);
@@ -48,16 +48,15 @@ public class WasteItemController {
     }
 
     @DeleteMapping("/items/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable long id){
-
-        WasteItem wasteItem = service.getItemById(id);
-
-        if(wasteItem != null){
-            return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>("failed to delete", HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Void> deleteWasteItemById(@PathVariable long id) {
+        try {
+            service.deleteWasteItemById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    
     //PUT Mapping
 }
