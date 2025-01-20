@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
+@Table(name = "Waste_Items")
 public class WasteItem {
     
     @Id
@@ -20,6 +23,9 @@ public class WasteItem {
     private long id;
     private String name;
     private String description;
-    private long quantity;
-    //category
+    private long quantity; 
+    
+    @ManyToOne()
+    private WasteCategory category;
+
 }
