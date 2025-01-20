@@ -1,10 +1,14 @@
-INSERT INTO WASTE_CATEGORIES (id, name, description) VALUES
+INSERT INTO Waste_Categories (id, name, description) VALUES
 (1, 'Organic', 'Biodegradable waste from plants or animals'),
 (2, 'Plastic', 'Synthetic or semi-synthetic materials'),
 (3, 'Paper', 'Materials made from wood pulp or other fibrous substances');
 
 
-INSERT INTO disposal_guidelines (id, name, description) VALUES
-(1, 'Organic Waste Disposal', 'Compost if possible, or dispose in green bins'),
-(2, 'Plastic Waste Disposal', 'Clean and segregate by type, then place in recycling bins'),
-(3, 'Paper Waste Disposal', 'Separate from other waste and place in paper recycling bins')
+INSERT INTO Disposal_Guidelines (name, description, category_id) 
+VALUES 
+('Paper Recycling', 'Separate clean paper items and place in blue recycling bins', 1),
+('Battery Disposal', 'Place used batteries in designated battery recycling containers', 2),
+('Food Waste', 'Collect food scraps in compost bins for organic processing', 3),
+('Glass Recycling', 'Clean and separate glass by color before recycling', 1),
+('Chemical Waste', 'Store in original containers and schedule hazardous pickup', 2),
+('Garden Waste', 'Place yard trimmings in green waste bins for composting', 3);
