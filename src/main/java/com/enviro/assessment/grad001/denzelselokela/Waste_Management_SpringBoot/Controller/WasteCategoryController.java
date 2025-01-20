@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +32,7 @@ public class WasteCategoryController {
 
     @GetMapping("/categories/{id}")
     public ResponseEntity<WasteCategory> getCategoryById(@PathVariable long id){
+        
         WasteCategory wasteCategory = service.getCategoryById(id);
 
         if(wasteCategory != null){
@@ -43,11 +43,11 @@ public class WasteCategoryController {
     }
 
     @PostMapping("/categories")
-    public ResponseEntity<?> addCategory(@RequestBody WasteCategory wasteCategory){
+    public ResponseEntity<WasteCategory> addCategory(@RequestBody WasteCategory wasteCategory){
         return new ResponseEntity<>(service.addCategory(wasteCategory),HttpStatus.OK);
     }
 
-    @PutMapping("/categories.{id}") // TODO fix update
+    @PostMapping("/categories/{id}") // TODO fix update
     public ResponseEntity<String> updateCategory(@PathVariable long id, @RequestBody WasteCategory wasteCategory){
 
         try {
@@ -62,16 +62,8 @@ public class WasteCategoryController {
         }
     }
     @DeleteMapping("/categories/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable long id){
-
-        WasteCategory wasteCategory = service.getCategoryById(id);
-
-        if(wasteCategory != null){
-            return new ResponseEntity<>("Deleted successfully", HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>("failed to delete", HttpStatus.BAD_REQUEST);
-        }
+    public void deleteCategory(@PathVariable long id){
+        service.deleteById(id);
     }
 }
 

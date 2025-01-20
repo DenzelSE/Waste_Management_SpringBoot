@@ -8,6 +8,6 @@ public interface RecyclingTipsService {
     public List<RecyclingTip> getAllRecyclingTips();
     public RecyclingTip getRecyclingTipById(long id);
     public RecyclingTip addRecyclingTip(RecyclingTip recyclingTip);
-    public RecyclingTip updaRecyclingTip(RecyclingTip upDatedRecyclingTip);
+    public RecyclingTip updateRecyclingTipById(long id, RecyclingTip upDatedRecyclingTip);
     void deleteById(long id);
 }

@@ -32,8 +32,9 @@ public class RecyclingTipsServiceImp implements RecyclingTipsService{
     }
 
     @Override
-    public RecyclingTip updaRecyclingTip(RecyclingTip updatedRecyclingTip) {
+    public RecyclingTip updateRecyclingTipById(long id, RecyclingTip updatedRecyclingTip) {
         updatedRecyclingTip.setTip(updatedRecyclingTip.getTip());
+        updatedRecyclingTip.setId(id);
         updatedRecyclingTip.setWasteCategory(updatedRecyclingTip.getWasteCategory());
         return repository.save(updatedRecyclingTip);
     }

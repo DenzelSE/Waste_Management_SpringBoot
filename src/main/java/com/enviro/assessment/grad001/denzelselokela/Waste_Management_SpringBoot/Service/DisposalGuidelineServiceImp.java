@@ -34,6 +34,7 @@ public class DisposalGuidelineServiceImp implements DisposalGuidelineService {
         disposalGuideline.setDescription(disposalGuideline.getDescription());
         disposalGuideline.setName(disposalGuideline.getName());
         disposalGuideline.setWasteCategory(disposalGuideline.getWasteCategory());
+        disposalGuideline.setId(id);
         return repository.save(disposalGuideline);
     }
 
