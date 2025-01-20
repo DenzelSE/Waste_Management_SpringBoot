@@ -1,7 +1,6 @@
 package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,14 +27,16 @@ public class WasteItemServiceImp implements WasteItemService{
 
     @Override
     public WasteItem addWasteItem(WasteItem wasteItem) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addWasteItem'");
+        return repository.save(wasteItem);
     }
 
     @Override
-    public WasteItem updateWasteItem(WasteItem updatedWasteItem) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateWasteItem'");
+    public WasteItem updateWasteItem(long id, WasteItem wasteItem) {
+        wasteItem.setDescription(wasteItem.getDescription());
+        wasteItem.setId(id);
+        wasteItem.setName(wasteItem.getName());
+        wasteItem.setWasteCategory(wasteItem.getWasteCategory());
+        return repository.save(wasteItem);
     }
 
     @Override

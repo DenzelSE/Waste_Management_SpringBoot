@@ -9,6 +9,6 @@ public interface WasteItemService {
     public List<WasteItem> getAllWasteItems();
     public WasteItem getWasteItemById(long id);
     public WasteItem addWasteItem(WasteItem wasteItem);
-    public WasteItem updateWasteItem(WasteItem updatedWasteItem);
+    public WasteItem updateWasteItem(long id, WasteItem updatedWasteItem);
     void deleteWasteItemById(long id);
 }
