@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.DisposalGuideline;
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.DisposalGuidelineService;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.DisposalGuidelineServiceImp;
 
 @RestController
 @CrossOrigin
@@ -18,7 +18,7 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 public class DisposalGuidelineController {
     
     @Autowired
-    private DisposalGuidelineService service;
+    private DisposalGuidelineServiceImp service;
 
     @GetMapping("/guidelines")
     public ResponseEntity<List<DisposalGuideline>> getAllGuidelines(){

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategory;
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteCategoryService;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteCategoryServiceImp;
 
 
 @RestController
@@ -24,7 +24,7 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 public class WasteCategoryController {
 
     @Autowired
-    public WasteCategoryService service;
+    public WasteCategoryServiceImp service;
 
     @GetMapping("/categories")
     public ResponseEntity<List<WasteCategory>> getAllcategories(){

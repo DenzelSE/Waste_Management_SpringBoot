@@ -9,7 +9,7 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.WasteItemRepository;
 
 @Service
-public class WasteItemService {
+public class WasteItemServiceImp {
     
     @Autowired
     private WasteItemRepository repository;

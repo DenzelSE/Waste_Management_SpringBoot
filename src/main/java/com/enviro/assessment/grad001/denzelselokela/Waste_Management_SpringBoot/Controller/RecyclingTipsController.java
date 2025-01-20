@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.RecyclingTip;
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.RecyclingTipsService;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.RecyclingTipsServiceImp;
 
 @RestController
 @CrossOrigin
@@ -18,7 +18,7 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 public class RecyclingTipsController {
     
     @Autowired
-    private RecyclingTipsService Tservice;
+    private RecyclingTipsServiceImp Tservice;
 
     @GetMapping("/tips")
     public ResponseEntity<List<RecyclingTip>> getAllTips(){

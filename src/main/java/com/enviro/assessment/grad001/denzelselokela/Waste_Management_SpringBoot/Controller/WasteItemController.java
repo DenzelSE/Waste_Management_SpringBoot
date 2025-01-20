@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteItem;
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteItemService;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteItemServiceImp;
 
 @RestController
 @CrossOrigin
@@ -23,7 +23,7 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 public class WasteItemController {
     
     @Autowired
-    private WasteItemService service;
+    private WasteItemServiceImp service;
 
     @GetMapping("/items")
     public ResponseEntity<List<WasteItem>> getAllItems(){
