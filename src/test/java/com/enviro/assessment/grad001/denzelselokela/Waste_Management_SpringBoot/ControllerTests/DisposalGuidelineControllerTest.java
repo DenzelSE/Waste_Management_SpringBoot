@@ -45,7 +45,8 @@ public class DisposalGuidelineControllerTest {
             .setControllerAdvice(new ExceptionHandler()) 
             .build();
         new ObjectMapper();
-                // Initialize test data
+        
+        // Initialize test data
         disposalGuidelineDTO = new DisposalGuidelineDTO();
         disposalGuidelineDTO.setId(1L);
         disposalGuidelineDTO.setName("Paper Recycling");
@@ -53,11 +54,9 @@ public class DisposalGuidelineControllerTest {
     }
     @Test
     void testGetAllGuidelines() throws Exception {
-        // Arrange
         List<DisposalGuidelineDTO> guidelines = Arrays.asList(disposalGuidelineDTO);
         when(service.getAllGuidelines()).thenReturn(guidelines);
 
-        // Act & Assert
         mockMvc.perform(get("/api/guidelines")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -70,11 +69,9 @@ public class DisposalGuidelineControllerTest {
 
     @Test
     void testGetGuidelineById_Found() throws Exception {
-        // Arrange
 
         when(service.getGuidelineById(1L)).thenReturn(disposalGuidelineDTO);
 
-        // Act & Assert
         mockMvc.perform(get("/api/guidelines/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -86,10 +83,9 @@ public class DisposalGuidelineControllerTest {
 
     @Test
     void testGetGuidelineById_NotFound() throws Exception {
-        // Arrange
+
         when(service.getGuidelineById(1L)).thenReturn(null);
 
-        // Act & Assert
         mockMvc.perform(get("/api/guidelines/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
@@ -99,11 +95,10 @@ public class DisposalGuidelineControllerTest {
 
     @Test
     void testAddGuideline() throws Exception {
-        // Arrange
+
         when(service.addGuideline(any(DisposalGuidelineDTO.class)))
                 .thenReturn(disposalGuidelineDTO);
 
-        // Act & Assert
         mockMvc.perform(post("/api/guidelines")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"Plastic\",\"description\":\"Recycle\"}"))
@@ -115,12 +110,10 @@ public class DisposalGuidelineControllerTest {
 
     @Test
     void testUpdateGuideline() throws Exception {
-        // Arrange
-        
+ 
         when(service.updateGuideline(eq(1L), any(DisposalGuidelineDTO.class)))
             .thenReturn(disposalGuidelineDTO);
 
-        // Act & Assert
         mockMvc.perform(post("/api/guidelines/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"Plastic\",\"description\":\"Reuse\"}"))
@@ -134,7 +127,7 @@ public class DisposalGuidelineControllerTest {
 
     @Test
     void testDeleteGuideline() throws Exception {
-        // Act & Assert
+
         mockMvc.perform(delete("/api/1")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

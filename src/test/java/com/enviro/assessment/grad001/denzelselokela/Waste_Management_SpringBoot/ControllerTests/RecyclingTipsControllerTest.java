@@ -55,11 +55,10 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void getAllRecyclingTips_ShouldReturnListOfTips() throws Exception {
-        // Arrange
+        
         List<RecyclingTipDTO> tips = Arrays.asList(tipDTO);
         when(service.getAllRecyclingTips()).thenReturn(tips);
 
-        // Act & Assert
         mockMvc.perform(get("/api/tips"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -69,10 +68,9 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void getRecyclingTipById_WithValidId_ShouldReturnTip() throws Exception {
-        // Arrange
+        
         when(service.getRecyclingTipById(1L)).thenReturn(tipDTO);
 
-        // Act & Assert
         mockMvc.perform(get("/api/tips/{id}", 1L))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -82,21 +80,20 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void getRecyclingTipById_WithInvalidId_ShouldReturnNotFound() throws Exception {
-        // Arrange
+        
         when(service.getRecyclingTipById(99L))
             .thenThrow(new theNotFoundException("tip", "id", 99L));
 
-        // Act & Assert
+
         mockMvc.perform(get("/api/tips/{id}", 99L))
             .andExpect(status().isNotFound());
     }
 
     @Test
     void addRecyclingTip_ShouldReturnCreatedTip() throws Exception {
-        // Arrange
+        
         when(service.addRecyclingTip(any(RecyclingTipDTO.class))).thenReturn(tipDTO);
 
-        // Act & Assert
         mockMvc.perform(post("/api/tips")
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(tipDTO)))
@@ -108,14 +105,13 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void updateRecyclingTip_WithValidId_ShouldReturnUpdatedTip() throws Exception {
-        // Arrange
+        
         RecyclingTipDTO updatedDTO = new RecyclingTipDTO();
         updatedDTO.setTip("Updated recycling tip");
 
         when(service.updateRecyclingTipById(eq(1L), any(RecyclingTipDTO.class)))
             .thenReturn(updatedDTO);
 
-        // Act & Assert
         mockMvc.perform(post("/api/tips/{id}", 1L)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(updatedDTO)))
@@ -126,11 +122,10 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void updateRecyclingTip_WithInvalidId_ShouldReturnNotFound() throws Exception {
-        // Arrange
+        
         when(service.updateRecyclingTipById(eq(99L), any(RecyclingTipDTO.class)))
             .thenThrow(new theNotFoundException("tip", "id", 99L));
 
-        // Act & Assert
         mockMvc.perform(post("/api/tips/{id}", 99L)
             .contentType(MediaType.APPLICATION_JSON)
             .content(objectMapper.writeValueAsString(tipDTO)))
@@ -139,10 +134,9 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void deleteById_WithValidId_ShouldReturnSuccess() throws Exception {
-        // Arrange
+        
         doNothing().when(service).deleteById(1L);
 
-        // Act & Assert
         mockMvc.perform(delete("/api/tips/{id}", 1L))
             .andExpect(status().isOk())
             .andExpect(content().string("Successfully deleted"));
@@ -150,10 +144,9 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void deleteById_WithInvalidId_ShouldReturnNotFound() throws Exception {
-        // Arrange
+        
         doNothing().when(service).deleteById(99L);
 
-        // Act & Assert
         mockMvc.perform(delete("/api/tips/{id}", 99L))
             .andExpect(status().isOk())
             .andExpect(content().string("Successfully deleted"));
@@ -161,11 +154,10 @@ public class RecyclingTipsControllerTest {
 
     @Test
     void shouldHandleCrossOriginRequests() throws Exception {
-        // Arrange
+        
         List<RecyclingTipDTO> tips = Arrays.asList(tipDTO);
         when(service.getAllRecyclingTips()).thenReturn(tips);
 
-        // Act & Assert
         mockMvc.perform(get("/api/tips")
             .header("Origin", "http://localhost:3000"))
             .andExpect(status().isOk())

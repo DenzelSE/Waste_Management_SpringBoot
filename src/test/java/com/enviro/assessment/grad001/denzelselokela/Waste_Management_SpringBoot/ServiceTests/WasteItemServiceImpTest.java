@@ -54,16 +54,14 @@ public class WasteItemServiceImpTest {
 
     @Test
     void getAllWasteItems_ShouldReturnListOfItems() {
-        // Arrange
+        
         List<WasteItem> items = Arrays.asList(wasteItem);
         when(repository.findAll()).thenReturn(items);
         when(modelMapper.map(any(WasteItem.class), eq(WasteItemDTO.class)))
             .thenReturn(wasteItemDTO);
 
-        // Act
         List<WasteItemDTO> result = service.getAllWasteItems();
 
-        // Assert
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals(wasteItemDTO, result.get(0));
@@ -72,25 +70,22 @@ public class WasteItemServiceImpTest {
 
     @Test
     void getWasteItemById_WithInvalidId_ShouldThrowNotFoundException() {
-        // Arrange
+        
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
-        // Act & Assert
         assertThrows(theNotFoundException.class, () -> service.getWasteItemById(99L));
         verify(repository).findById(99L);
     }
 
     @Test
     void addWasteItem_ShouldReturnSavedItem() {
-        // Arrange
+        
         when(modelMapper.map(wasteItemDTO, WasteItem.class)).thenReturn(wasteItem);
         when(repository.save(any(WasteItem.class))).thenReturn(wasteItem);
         when(modelMapper.map(wasteItem, WasteItemDTO.class)).thenReturn(wasteItemDTO);
 
-        // Act
         WasteItemDTO result = service.addWasteItem(wasteItemDTO);
 
-        // Assert
         assertNotNull(result);
         assertEquals(wasteItemDTO.getName(), result.getName());
         assertEquals(wasteItemDTO.getDescription(), result.getDescription());

@@ -51,16 +51,16 @@ public class RecyclingTipsServiceImpTest {
 
     @Test
     void getAllRecyclingTips_ShouldReturnListOfTips() {
-        // Arrange
+       
         List<RecyclingTip> tips = Arrays.asList(tip);
         when(repository.findAll()).thenReturn(tips);
         when(modelMapper.map(any(RecyclingTip.class), eq(RecyclingTipDTO.class)))
             .thenReturn(tipDTO);
 
-        // Act
+        
         List<RecyclingTipDTO> result = service.getAllRecyclingTips();
 
-        // Assert
+        
         assertNotNull(result);
         assertEquals(1, result.size());
         assertEquals(tipDTO, result.get(0));
@@ -69,14 +69,14 @@ public class RecyclingTipsServiceImpTest {
 
     @Test
     void getRecyclingTipById_WithValidId_ShouldReturnTip() {
-        // Arrange
+       
         when(repository.findById(1L)).thenReturn(Optional.of(tip));
         when(modelMapper.map(tip, RecyclingTipDTO.class)).thenReturn(tipDTO);
 
-        // Act
+        
         RecyclingTipDTO result = service.getRecyclingTipById(1L);
 
-        // Assert
+        
         assertNotNull(result);
         assertEquals(tipDTO.getId(), result.getId());
         assertEquals(tipDTO.getTip(), result.getTip());
@@ -85,25 +85,25 @@ public class RecyclingTipsServiceImpTest {
 
     @Test
     void getRecyclingTipById_WithInvalidId_ShouldThrowNotFoundException() {
-        // Arrange
+       
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
-        // Act & Assert
+        
         assertThrows(theNotFoundException.class, () -> service.getRecyclingTipById(99L));
         verify(repository).findById(99L);
     }
 
     @Test
     void addRecyclingTip_ShouldReturnSavedTip() {
-        // Arrange
+       
         when(modelMapper.map(tipDTO, RecyclingTip.class)).thenReturn(tip);
         when(repository.save(any(RecyclingTip.class))).thenReturn(tip);
         when(modelMapper.map(tip, RecyclingTipDTO.class)).thenReturn(tipDTO);
 
-        // Act
+        
         RecyclingTipDTO result = service.addRecyclingTip(tipDTO);
 
-        // Assert
+        
         assertNotNull(result);
         assertEquals(tipDTO.getTip(), result.getTip());
         verify(repository).save(any(RecyclingTip.class));
@@ -111,7 +111,7 @@ public class RecyclingTipsServiceImpTest {
 
     @Test
     void updateRecyclingTipById_WithValidId_ShouldReturnUpdatedTip() {
-        // Arrange
+       
         RecyclingTipDTO updateDTO = new RecyclingTipDTO();
         updateDTO.setTip("Updated recycling tip");
 
@@ -119,10 +119,10 @@ public class RecyclingTipsServiceImpTest {
         when(repository.save(any(RecyclingTip.class))).thenReturn(tip);
         when(modelMapper.map(tip, RecyclingTipDTO.class)).thenReturn(tipDTO);
 
-        // Act
+        
         RecyclingTipDTO result = service.updateRecyclingTipById(1L, updateDTO);
 
-        // Assert
+        
         assertNotNull(result);
         verify(repository).findById(1L);
         verify(repository).save(any(RecyclingTip.class));
@@ -130,10 +130,10 @@ public class RecyclingTipsServiceImpTest {
 
     @Test
     void updateRecyclingTipById_WithInvalidId_ShouldThrowNotFoundException() {
-        // Arrange
+       
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
-        // Act & Assert
+         
         assertThrows(theNotFoundException.class, 
             () -> service.updateRecyclingTipById(99L, tipDTO));
         verify(repository).findById(99L);
@@ -141,24 +141,24 @@ public class RecyclingTipsServiceImpTest {
 
     @Test
     void deleteById_WithValidId_ShouldDeleteTip() {
-        // Arrange
+       
         when(repository.findById(1L)).thenReturn(Optional.of(tip));
         doNothing().when(repository).delete(tip);
 
-        // Act
+        
         service.deleteById(1L);
 
-        // Assert
+        
         verify(repository).findById(1L);
         verify(repository).delete(tip);
     }
 
     @Test
     void deleteById_WithInvalidId_ShouldThrowNotFoundException() {
-        // Arrange
+       
         when(repository.findById(99L)).thenReturn(Optional.empty());
 
-        // Act & Assert
+        
         assertThrows(theNotFoundException.class, () -> service.deleteById(99L));
         verify(repository).findById(99L);
     }
