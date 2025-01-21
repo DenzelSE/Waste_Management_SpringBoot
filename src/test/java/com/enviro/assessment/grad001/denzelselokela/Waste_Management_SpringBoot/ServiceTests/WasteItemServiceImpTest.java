@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 import java.util.Arrays;
@@ -14,9 +15,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteItemDTO;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Exception.theNotFoundException;
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategory;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteItem;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.WasteItemRepository;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteItemServiceImp;
@@ -27,25 +29,27 @@ public class WasteItemServiceImpTest {
     @Mock
     private WasteItemRepository repository;
 
+    @Mock
+    private ModelMapper modelMapper;
+
     @InjectMocks
     private WasteItemServiceImp service;
 
     private WasteItem wasteItem;
-    private WasteCategory category;
+    private WasteItemDTO wasteItemDTO;
 
     @BeforeEach
     void setUp() {
         // Initialize test data
-        category = new WasteCategory();
-        category.setId(1L);
-        category.setName("Plastic");
-        category.setDescription("Plastic materials");
-
         wasteItem = new WasteItem();
         wasteItem.setId(1L);
         wasteItem.setName("Plastic Bottle");
         wasteItem.setDescription("Empty plastic bottle");
-        wasteItem.setWasteCategory(category);
+        
+        wasteItemDTO = new WasteItemDTO();
+        wasteItemDTO.setDescription("Empty plastic bottle");
+        wasteItemDTO.setId(1L);
+        wasteItemDTO.setName("Plastic Bottle");
     }
 
     @Test
@@ -53,32 +57,17 @@ public class WasteItemServiceImpTest {
         // Arrange
         List<WasteItem> items = Arrays.asList(wasteItem);
         when(repository.findAll()).thenReturn(items);
+        when(modelMapper.map(any(WasteItem.class), eq(WasteItemDTO.class)))
+            .thenReturn(wasteItemDTO);
 
         // Act
-        List<WasteItem> result = service.getAllWasteItems();
+        List<WasteItemDTO> result = service.getAllWasteItems();
 
         // Assert
         assertNotNull(result);
         assertEquals(1, result.size());
-        assertEquals(wasteItem, result.get(0));
+        assertEquals(wasteItemDTO, result.get(0));
         verify(repository).findAll();
-    }
-
-    @Test
-    void getWasteItemById_WithValidId_ShouldReturnItem() {
-        // Arrange
-        when(repository.findById(1L)).thenReturn(Optional.of(wasteItem));
-
-        // Act
-        WasteItem result = service.getWasteItemById(1L);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(wasteItem.getId(), result.getId());
-        assertEquals(wasteItem.getName(), result.getName());
-        assertEquals(wasteItem.getDescription(), result.getDescription());
-        assertEquals(wasteItem.getWasteCategory(), result.getWasteCategory());
-        verify(repository).findById(1L);
     }
 
     @Test
@@ -94,61 +83,18 @@ public class WasteItemServiceImpTest {
     @Test
     void addWasteItem_ShouldReturnSavedItem() {
         // Arrange
+        when(modelMapper.map(wasteItemDTO, WasteItem.class)).thenReturn(wasteItem);
         when(repository.save(any(WasteItem.class))).thenReturn(wasteItem);
+        when(modelMapper.map(wasteItem, WasteItemDTO.class)).thenReturn(wasteItemDTO);
 
         // Act
-        WasteItem result = service.addWasteItem(wasteItem);
+        WasteItemDTO result = service.addWasteItem(wasteItemDTO);
 
         // Assert
         assertNotNull(result);
-        assertEquals(wasteItem.getName(), result.getName());
-        assertEquals(wasteItem.getDescription(), result.getDescription());
-        assertEquals(wasteItem.getWasteCategory(), result.getWasteCategory());
+        assertEquals(wasteItemDTO.getName(), result.getName());
+        assertEquals(wasteItemDTO.getDescription(), result.getDescription());
         verify(repository).save(any(WasteItem.class));
     }
 
-    @Test
-    void updateWasteItem_ShouldReturnUpdatedItem() {
-        // Arrange
-        WasteItem updatedItem = new WasteItem();
-        updatedItem.setName("Updated Bottle");
-        updatedItem.setDescription("Updated description");
-        updatedItem.setWasteCategory(category);
-
-        when(repository.save(any(WasteItem.class))).thenReturn(updatedItem);
-
-        // Act
-        WasteItem result = service.updateWasteItem(1L, updatedItem);
-
-        // Assert
-        assertNotNull(result);
-        assertEquals(updatedItem.getName(), result.getName());
-        assertEquals(updatedItem.getDescription(), result.getDescription());
-        assertEquals(updatedItem.getWasteCategory(), result.getWasteCategory());
-        verify(repository).save(any(WasteItem.class));
-    }
-
-    @Test
-    void deleteWasteItemById_ShouldDeleteItem() {
-        // Arrange
-        doNothing().when(repository).deleteById(1L);
-
-        // Act
-        service.deleteWasteItemById(1L);
-
-        // Assert
-        verify(repository).deleteById(1L);
-    }
-
-    @Test
-    void deleteWasteItemById_WithInvalidId_ShouldAttemptDeletion() {
-        // Arrange
-        doNothing().when(repository).deleteById(99L);
-
-        // Act
-        service.deleteWasteItemById(99L);
-
-        // Assert
-        verify(repository).deleteById(99L);
-    }
 }

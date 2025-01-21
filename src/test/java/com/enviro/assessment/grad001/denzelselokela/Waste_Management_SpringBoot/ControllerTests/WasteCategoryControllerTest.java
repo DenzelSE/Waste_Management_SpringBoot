@@ -43,7 +43,7 @@ public class WasteCategoryControllerTest {
     @BeforeEach
     void setUp() {
         mockMvc = MockMvcBuilders.standaloneSetup(controller)
-            .setControllerAdvice(new ExceptionHandler())  // Add your exception handler if you have one
+            .setControllerAdvice(new ExceptionHandler()) 
             .build();
         objectMapper = new ObjectMapper();
 
