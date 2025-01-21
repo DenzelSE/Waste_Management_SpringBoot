@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Global exception handler for the Waste Management Spring Boot application.
+ * This class provides centralized handling of exceptions throughout the application, 
+ * improving consistency and maintainability of error responses.
+ */
+
 @ControllerAdvice
 public class ExceptionHandler extends ResponseEntityExceptionHandler{
     

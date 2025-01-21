@@ -13,6 +13,12 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.WasteCategoryRepository;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.interfaces.WasteCategoryService;
 
+/**
+ * Implementation of the WasteCategotyService interface for managing disposal guidelines 
+ * in the Waste Management Spring Boot application. This class contains the business logic 
+ * for retrieving, creating, updating, and deleting disposal guidelines.
+ */
+
 @Service
 public class WasteCategoryServiceImp implements WasteCategoryService{
 

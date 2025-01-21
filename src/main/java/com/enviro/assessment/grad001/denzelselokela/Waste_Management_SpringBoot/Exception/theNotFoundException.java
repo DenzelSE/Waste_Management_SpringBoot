@@ -3,6 +3,12 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * Exception class for handling "not found" errors in the Waste Management Spring Boot application.
+ * This exception is used to indicate that a specific resource could not be found, such as a database entity.
+ * 
+ */
+
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class theNotFoundException extends RuntimeException{
     private String errorName;

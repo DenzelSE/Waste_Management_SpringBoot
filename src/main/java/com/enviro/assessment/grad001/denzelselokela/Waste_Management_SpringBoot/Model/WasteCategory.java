@@ -18,6 +18,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity class representing a waste category in the Waste Management Spring Boot application. 
+ * This class is mapped to the "Waste_Categories" table in the database and defines the attributes 
+ * and relationships of a waste categories.
+ */
+
 @Entity
 @Data
 @AllArgsConstructor

@@ -14,6 +14,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity class representing a disposal guideline in the Waste Management Spring Boot application. 
+ * This class is mapped to the "Disposal_Guidelines" table in the database and defines the attributes 
+ * and relationships of a disposal guideline.
+ */
+
 @Entity
 @Data
 @AllArgsConstructor

@@ -15,6 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity class representing a recycling tips in the Waste Management Spring Boot application. 
+ * This class is mapped to the "Recycling_Tips" table in the database and defines the attributes 
+ * and relationships of a recycling tips.
+ */
+
 @Entity
 @Data
 @AllArgsConstructor

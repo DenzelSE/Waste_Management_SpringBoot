@@ -17,6 +17,19 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.DisposalGuidelineServiceImp;
 
+/**
+ * Controller for managing diposal guidelines in the Waste Management Spring Boot application.
+ * Handles incoming HTTP requests related to disposal guidelines, such as retrieving, adding, 
+ * updating, and deleting.
+ * 
+ * Endpoints:
+ *  - GET /api/categories
+ *  - GET /api/categories/{id}
+ *  - POST /api/categories
+ *  - POST /api/categories/{id}
+ *  - Delete /api/categories/{id}
+ */
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api")

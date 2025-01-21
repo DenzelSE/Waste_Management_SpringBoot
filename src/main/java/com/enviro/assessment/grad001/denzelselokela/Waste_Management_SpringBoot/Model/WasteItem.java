@@ -15,6 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity class representing a waste item in the Waste Management Spring Boot application. 
+ * This class is mapped to the "Waste_Items" table in the database and defines the attributes 
+ * and relationships of a waste items.
+ */
+
 @Entity
 @Data
 @AllArgsConstructor

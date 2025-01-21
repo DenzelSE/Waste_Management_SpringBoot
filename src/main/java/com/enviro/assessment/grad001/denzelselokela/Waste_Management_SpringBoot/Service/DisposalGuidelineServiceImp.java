@@ -13,6 +13,12 @@ import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.DisposalGuidelineRepository;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.interfaces.DisposalGuidelineService;
 
+/**
+ * Implementation of the DisposalGuidelineService interface for managing disposal guidelines 
+ * in the Waste Management Spring Boot application. This class contains the business logic 
+ * for retrieving, creating, updating, and deleting disposal guidelines.
+ */
+
 @Service
 public class DisposalGuidelineServiceImp implements DisposalGuidelineService {
     

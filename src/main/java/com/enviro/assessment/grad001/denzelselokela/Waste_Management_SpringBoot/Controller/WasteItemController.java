@@ -17,6 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteItemDTO;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteItemServiceImp;
 
+
+/**
+ * Controller for managing waste items in the Waste Management Spring Boot application.
+ * Handles incoming HTTP requests related to waste item, such as retrieving, adding, 
+ * updating, and deleting.
+ * 
+ * Endpoints:
+ *  - GET /api/categories
+ *  - GET /api/categories/{id}
+ *  - POST /api/categories
+ *  - POST /api/categories/{id}
+ *  - Delete /api/categories/{id}
+ */
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api")

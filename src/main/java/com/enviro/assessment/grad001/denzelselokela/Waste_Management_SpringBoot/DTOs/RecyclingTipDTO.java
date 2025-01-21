@@ -7,6 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Data Transfer Object (DTO) for representing recycling tips in the Waste Management 
+ * Spring Boot application. This class is used to transfer data between layers of the application.
+ */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
