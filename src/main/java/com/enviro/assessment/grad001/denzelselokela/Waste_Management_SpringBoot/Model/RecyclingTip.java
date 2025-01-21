@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Reycling_Tips")
+@Table(name = "Recycling_Tips")
 public class RecyclingTip {
 
     @Id

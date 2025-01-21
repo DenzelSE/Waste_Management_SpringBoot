@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.RecyclingTipDTO;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Exception.theNotFoundException;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.RecyclingTip;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.RecyclingTipsRepository;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.interfaces.RecyclingTipsService;
@@ -35,7 +36,9 @@ public class RecyclingTipsServiceImp implements RecyclingTipsService{
 
     @Override
     public RecyclingTipDTO getRecyclingTipById(Long id) {
-        RecyclingTip tip = repository.findById(id).orElseThrow();
+        RecyclingTip tip = repository.findById(id)
+                    .orElseThrow(() -> new theNotFoundException("tip", "id", id));
+
 
 
         return modelMapper.map(tip, RecyclingTipDTO.class); // handle properly 
@@ -50,7 +53,8 @@ public class RecyclingTipsServiceImp implements RecyclingTipsService{
 
     @Override
     public RecyclingTipDTO updateRecyclingTipById(Long id, RecyclingTipDTO recyclingTipDto){
-        RecyclingTip tip = repository.findById(id).orElseThrow();
+        RecyclingTip tip = repository.findById(id)
+        .orElseThrow(() -> new theNotFoundException("tip", "id", id));
 
         tip.setTip(recyclingTipDto.getTip());
         tip.setId(id);
@@ -61,7 +65,8 @@ public class RecyclingTipsServiceImp implements RecyclingTipsService{
 
     @Override
     public void deleteById(Long id) {
-        RecyclingTip tip = repository.findById(id).orElseThrow(null);
+        RecyclingTip tip = repository.findById(id)
+            .orElseThrow(() -> new theNotFoundException("tip", "id", id));
         repository.delete(tip);
     }
 }

@@ -18,7 +18,7 @@ VALUES
 ('Food Waste', 'Collect food scraps in compost bins for organic processing', 1),
 ('Garden Waste', 'Place yard trimmings in green waste bins for composting', 1);
 
-INSERT INTO Reycling_Tips (tip, category_id) 
+INSERT INTO Recycling_Tips (tip, category_id) 
 VALUES 
 -- Organic waste tips
 ('Collect kitchen scraps in a countertop compost bin for easy sorting', 1),

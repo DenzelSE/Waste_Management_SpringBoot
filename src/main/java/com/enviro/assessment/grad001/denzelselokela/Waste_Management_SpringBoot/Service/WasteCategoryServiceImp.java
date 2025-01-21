@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteCategoryDTO;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Exception.theNotFoundException;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategory;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.WasteCategoryRepository;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.interfaces.WasteCategoryService;
@@ -32,12 +33,12 @@ public class WasteCategoryServiceImp implements WasteCategoryService{
                         .collect(Collectors.toList());
     }
 
-    // TODOhandle exception properlly
+  
     @Override
     public WasteCategoryDTO getCategoryById(Long id){
 
         WasteCategory category = repository.findById(id)
-                        .orElseThrow(); // handle exception
+                    .orElseThrow(() -> new theNotFoundException("Category", "id", id));
         return modelMapper.map(category, WasteCategoryDTO.class);
     }
 
@@ -50,7 +51,8 @@ public class WasteCategoryServiceImp implements WasteCategoryService{
 
     @Override
     public WasteCategoryDTO updateCategory(Long id,WasteCategoryDTO wasteCategoryDto) {
-        WasteCategory category = repository.findById(id).orElseThrow();
+        WasteCategory category = repository.findById(id)
+        .orElseThrow(() -> new theNotFoundException("Category", "id", id));
 
         category.setDescription(wasteCategoryDto.getDescription());
         category.setName(wasteCategoryDto.getName());
@@ -62,7 +64,8 @@ public class WasteCategoryServiceImp implements WasteCategoryService{
 
     @Override
     public void deleteById(Long id) {
-        WasteCategory category = repository.findById(id).orElseThrow();
+        WasteCategory category = repository.findById(id)
+        .orElseThrow(() -> new theNotFoundException("Category", "id", id));
         repository.delete(category);
     }
 

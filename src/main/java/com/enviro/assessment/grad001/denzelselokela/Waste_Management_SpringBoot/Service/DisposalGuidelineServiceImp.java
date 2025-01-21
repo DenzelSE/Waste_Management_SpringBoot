@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.DisposalGuidelineDTO;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Exception.theNotFoundException;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.DisposalGuideline;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Repository.DisposalGuidelineRepository;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.interfaces.DisposalGuidelineService;
@@ -33,7 +34,7 @@ public class DisposalGuidelineServiceImp implements DisposalGuidelineService {
     @Override
     public DisposalGuidelineDTO getGuidelineById(Long id) {
         DisposalGuideline guideline = repository.findById(id)
-                        .orElseThrow(); //plan for exception
+                        .orElseThrow(() -> new theNotFoundException("category", "id", id)); //plan for exception
         
         return modelMapper.map(guideline, DisposalGuidelineDTO.class);
     }
@@ -51,7 +52,7 @@ public class DisposalGuidelineServiceImp implements DisposalGuidelineService {
                             DisposalGuidelineDTO disposalGuidelinedDto) {
         
         DisposalGuideline guideline = repository.findById(id)
-                            .orElseThrow();
+        .orElseThrow(() -> new theNotFoundException("category", "id", id));
         
         guideline.setDescription(disposalGuidelinedDto.getDescription());
         guideline.setName(disposalGuidelinedDto.getName());
@@ -65,7 +66,7 @@ public class DisposalGuidelineServiceImp implements DisposalGuidelineService {
     @Override
     public void deleteById(Long id) {
         DisposalGuideline guideline = repository.findById(id)
-        .orElseThrow();
+        .orElseThrow(() -> new theNotFoundException("category", "id", id));
 
         repository.delete(guideline);
     }
