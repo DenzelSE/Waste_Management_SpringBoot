@@ -2,12 +2,13 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 
 import java.util.List;
 
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.RecyclingTipDTO;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.RecyclingTip;
 
 public interface RecyclingTipsService {
-    public List<RecyclingTip> getAllRecyclingTips();
-    public RecyclingTip getRecyclingTipById(long id);
-    public RecyclingTip addRecyclingTip(RecyclingTip recyclingTip);
-    public RecyclingTip updateRecyclingTipById(long id, RecyclingTip upDatedRecyclingTip);
-    void deleteById(long id);
+    public List<RecyclingTipDTO> getAllRecyclingTips();
+    public RecyclingTipDTO getRecyclingTipById(Long id);
+    public RecyclingTipDTO addRecyclingTip(RecyclingTipDTO recyclingTipDto);
+    public RecyclingTipDTO updateRecyclingTipById(Long id, RecyclingTipDTO upDatedRecyclingTipDto);
+    void deleteById(Long id);
 }

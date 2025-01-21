@@ -2,13 +2,13 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 
 import java.util.List;
 
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategory;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteCategoryDTO;
 
 public interface WasteCategoryService {
-    public List<WasteCategory> getAllcategories();
-    public WasteCategory getCategoryById(long id);
-    public WasteCategory addCategory(WasteCategory wasteCategory);
-    public WasteCategory updateCategory(long id,WasteCategory wasteCategory);
-    void deleteById(long id);
+    public List<WasteCategoryDTO> getAllcategories();
+    public WasteCategoryDTO getCategoryById(Long id);
+    public WasteCategoryDTO addCategory(WasteCategoryDTO wasteCategoryDto);
+    public WasteCategoryDTO updateCategory(Long id,WasteCategoryDTO wasteCategoryDto);
+    void deleteById(Long id);
 
 }

@@ -3,7 +3,6 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;

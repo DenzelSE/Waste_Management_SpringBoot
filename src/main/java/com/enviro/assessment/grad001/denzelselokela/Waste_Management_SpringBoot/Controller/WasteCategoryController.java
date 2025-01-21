@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteCategory;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteCategoryDTO;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteCategoryServiceImp;
 
 
@@ -26,44 +26,39 @@ public class WasteCategoryController {
     public WasteCategoryServiceImp service;
 
     @GetMapping("/categories")
-    public ResponseEntity<List<WasteCategory>> getAllcategories(){
+    public ResponseEntity<List<WasteCategoryDTO>> getAllcategories(){
         return new ResponseEntity<>(service.getAllcategories(),HttpStatus.OK);
     }
 
     @GetMapping("/categories/{id}")
-    public ResponseEntity<WasteCategory> getCategoryById(@PathVariable long id){
+    public ResponseEntity<WasteCategoryDTO> getCategoryById(@PathVariable Long id){
         
-        WasteCategory wasteCategory = service.getCategoryById(id);
-
-        if(wasteCategory != null){
-            return new ResponseEntity<>(wasteCategory, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(wasteCategory, HttpStatus.NOT_FOUND);
-        }
+        WasteCategoryDTO wasteCategoryDto = service.getCategoryById(id);
+        return new ResponseEntity<>(wasteCategoryDto, HttpStatus.OK);
+        
     }
 
     @PostMapping("/categories")
-    public ResponseEntity<WasteCategory> addCategory(@RequestBody WasteCategory wasteCategory){
-        return new ResponseEntity<>(service.addCategory(wasteCategory),HttpStatus.OK);
+    public ResponseEntity<WasteCategoryDTO> addCategory(
+                @RequestBody WasteCategoryDTO wasteCategoryDto){
+        return new ResponseEntity<>(service.addCategory(wasteCategoryDto),HttpStatus.OK);
     }
 
-    @PostMapping("/categories/{id}") // TODO fix update
-    public ResponseEntity<String> updateCategory(@PathVariable long id, @RequestBody WasteCategory wasteCategory){
+    @PostMapping("/categories/{id}")
+    public ResponseEntity<WasteCategoryDTO> updateCategory(
+        @PathVariable Long id, @RequestBody WasteCategoryDTO wasteCategoryDto){
 
-        try {
-            wasteCategory = service.updateCategory(id, wasteCategory);
-        } catch (Exception e) {
-            return new ResponseEntity<>("failed to update", HttpStatus.BAD_REQUEST);
-        }
-        if (wasteCategory != null){
-            return new ResponseEntity<>("updated", HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>("failed to update", HttpStatus.BAD_REQUEST);
-        }
+        
+            wasteCategoryDto = service.updateCategory(id, wasteCategoryDto);
+        
+            return new ResponseEntity<>(wasteCategoryDto, HttpStatus.OK);        
     }
     @DeleteMapping("/categories/{id}")
-    public void deleteCategory(@PathVariable long id){
+    public ResponseEntity<String> deleteCategory(@PathVariable Long id){
+        
         service.deleteById(id);
+
+        return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
     }
 }
 
