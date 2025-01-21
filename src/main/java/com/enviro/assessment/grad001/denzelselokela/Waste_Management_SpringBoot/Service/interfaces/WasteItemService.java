@@ -2,13 +2,12 @@ package com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot
 
 import java.util.List;
 
-
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteItem;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteItemDTO;
 
 public interface WasteItemService {
-    public List<WasteItem> getAllWasteItems();
-    public WasteItem getWasteItemById(long id);
-    public WasteItem addWasteItem(WasteItem wasteItem);
-    public WasteItem updateWasteItem(long id, WasteItem updatedWasteItem);
-    void deleteWasteItemById(long id);
+    public List<WasteItemDTO> getAllWasteItems();
+    public WasteItemDTO getWasteItemById(Long id);
+    public WasteItemDTO addWasteItem(WasteItemDTO wasteItemDto);
+    public WasteItemDTO updateWasteItem(Long id, WasteItemDTO updatedWasteItemDto);
+    void deleteWasteItemById(Long id);
 }

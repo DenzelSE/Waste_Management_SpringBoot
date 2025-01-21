@@ -47,17 +47,14 @@ public class WasteCategoryController {
     @PostMapping("/categories/{id}")
     public ResponseEntity<WasteCategoryDTO> updateCategory(
         @PathVariable Long id, @RequestBody WasteCategoryDTO wasteCategoryDto){
-
         
             wasteCategoryDto = service.updateCategory(id, wasteCategoryDto);
-        
             return new ResponseEntity<>(wasteCategoryDto, HttpStatus.OK);        
     }
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable Long id){
-        
+    
         service.deleteById(id);
-
         return new ResponseEntity<>("Successfully deleted", HttpStatus.OK);
     }
 }

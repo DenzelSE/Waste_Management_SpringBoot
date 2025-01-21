@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Model.WasteItem;
+import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.DTOs.WasteItemDTO;
 import com.enviro.assessment.grad001.denzelselokela.Waste_Management_SpringBoot.Service.WasteItemServiceImp;
 
 @RestController
@@ -26,35 +26,30 @@ public class WasteItemController {
     private WasteItemServiceImp service;
 
     @GetMapping("/items")
-    public ResponseEntity<List<WasteItem>> getAllWasteItems(){
+    public ResponseEntity<List<WasteItemDTO>> getAllWasteItems(){
         return new ResponseEntity<>(service.getAllWasteItems(), HttpStatus.OK);
     }
 
     @GetMapping("/items/{id}")
-    public ResponseEntity<WasteItem> getWasteItemById(@PathVariable long id){
+    public ResponseEntity<WasteItemDTO> getWasteItemById(@PathVariable Long id){
         
-        WasteItem wasteItem = service.getWasteItemById(id);
+        WasteItemDTO wasteItem = service.getWasteItemById(id);
 
-        if(wasteItem != null){
-            return new ResponseEntity<>(wasteItem, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(wasteItem, HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(wasteItem, HttpStatus.OK);
+  
     }
 
     @PostMapping("/items")
-    public ResponseEntity<?> addWasteItem(@RequestBody WasteItem wasteItem){
-        return new ResponseEntity<>(service.addWasteItem(wasteItem),HttpStatus.OK);
+    public ResponseEntity<WasteItemDTO> addWasteItem(@RequestBody WasteItemDTO wasteItemDto){
+        
+        return new ResponseEntity<>(service.addWasteItem(wasteItemDto),HttpStatus.OK);
     }
 
     @DeleteMapping("/items/{id}")
-    public ResponseEntity<Void> deleteWasteItemById(@PathVariable long id) {
-        try {
-            service.deleteWasteItemById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<String> deleteWasteItemById(@PathVariable Long id) {
+        
+        service.deleteWasteItemById(id);
+        return new ResponseEntity<>("Successfully deleted",HttpStatus.OK);
     }
 
 }
