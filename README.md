@@ -33,15 +33,7 @@ You will need the following requirements to be able to run and interact with the
      ```bash
       cd Waste_Management_SprintBoot
       ```
-  3.  Build the project:
-       
-      ``` bash
-       ./mvnw clean install
-      ```
-  5.   run the project: 
-       ```bash
-       ./mvnw spring-boot:run
-
+ 
 # REST endpoints :
 Categories : 
   - Get '/categories' - get all categories
